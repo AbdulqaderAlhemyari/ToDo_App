@@ -1,7 +1,6 @@
 package com.codingacademy.swipeablelayout
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Toast.makeText(this@MainActivity, tab?.text.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@MainActivity, tab?.text.toString(), Toast.LENGTH_LONG).show()
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -37,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         tabViewPager.adapter = object : FragmentStateAdapter(this) {
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> FirstFragment.newInstance(position, "")
-                    1 -> FirstFragment.newInstance(position, "")
-                    2 -> FirstFragment.newInstance(position, "")
-                    else -> ThirdFragment.newInstance("", "")
+                    0 -> GeneralFragment.newInstance(position, "")
+                    1 -> GeneralFragment.newInstance(position, "")
+                    2 -> GeneralFragment.newInstance(position, "")
+                    else ->GeneralFragment.newInstance(position, "")
                 }
             }
 
@@ -54,16 +53,16 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout, tabViewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = "Tab 1"
-                    tab.setIcon(R.drawable.ic_baseline_keyboard_voice_24)
+                    tab.text = "ToDO"
+                    tab.setIcon(R.drawable.ic_baseline_history_24)
                 }
                 1 -> {
-                    tab.text = "Tab 2"
-                    tab.setIcon(R.drawable.ic_baseline_camera_alt_24)
+                    tab.text = "InProgress"
+                    tab.setIcon(R.drawable.ic_baseline_autorenew_24)
                 }
                 2 -> {
-                    tab.text = "Tab 3"
-                    tab.setIcon(R.drawable.ic_baseline_videocam_24)
+                    tab.text = "Done"
+                    tab.setIcon(R.drawable.ic_baseline_assignment_turned_in_24)
                 }
                 else -> null
             }
